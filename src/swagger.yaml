@@ -1,0 +1,136 @@
+openapi: 3.0.0
+info:
+  title: Celora API
+  version: 1.0.0
+  description: API documentation for the Celora backend
+
+servers:
+  - url: http://localhost:5000/api/v1
+
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User registered successfully
+        '400':
+          description: Bad request
+
+  /auth/login:
+    post:
+      summary: Login a user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Unauthorized
+
+  /auth/me:
+    get:
+      summary: Get current logged in user
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Current user info
+        '401':
+          description: Unauthorized
+
+  /blog:
+    post:
+      summary: Create a blog post
+      tags:
+        - Blog
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - title
+                - content
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Blog created
+        '400':
+          description: Invalid input
+
+    get:
+      summary: Get all blog posts
+      tags:
+        - Blog
+      responses:
+        '200':
+          description: A list of blog posts
+
+  /blog/{id}:
+    get:
+      summary: Get a single blog post by ID
+      tags:
+        - Blog
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Blog post found
+        '404':
+          description: Blog not found
+
+securitySchemes:
+  bearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT

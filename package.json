@@ -4,31 +4,33 @@
     "description": "Backend server for Celora Jewelry Platform (B2B2C Marketplace)",
     "main": "src/server.js",
     "scripts": {
-      "start": "node src/server.js",
-      "dev": "nodemon src/server.js",
-      "pm2": "pm2 start ecosystem.config.js",
-      "test": "echo \"No tests yet\" && exit 0"
+        "start": "node src/server.js",
+        "dev": "nodemon src/server.js",
+        "pm2": "pm2 start ecosystem.config.js",
+        "test": "echo \"No tests yet\" && exit 0"
     },
     "author": "Senil Viradiya & Vatsal Mangukiya",
     "license": "MIT",
     "dependencies": {
-      "bcryptjs": "^2.4.3",
-      "cors": "^2.8.5",
-      "dotenv": "^16.4.2",
-      "express": "^4.18.2",
-      "express-mongo-sanitize": "^2.2.0",
-      "express-rate-limit": "^6.7.0",
-      "helmet": "^7.0.0",
-      "hpp": "^0.2.3",
-      "jsonwebtoken": "^9.0.2",
-      "mongoose": "^7.6.3",
-      "morgan": "^1.10.0",
-      "pm2": "^5.3.0",
-      "winston": "^3.10.0",
-      "xss-clean": "^0.1.1"
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.5.0",
+        "express": "^4.18.2",
+        "express-mongo-sanitize": "^2.2.0",
+        "express-rate-limit": "^6.7.0",
+        "helmet": "^7.0.0",
+        "hpp": "^0.2.3",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^7.6.3",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.5-lts.2",
+        "pm2": "^5.3.0",
+        "swagger-ui-express": "^5.0.1",
+        "winston": "^3.10.0",
+        "xss-clean": "^0.1.1",
+        "yamljs": "^0.3.0"
     },
     "devDependencies": {
-      "nodemon": "^3.0.3"
+        "nodemon": "^3.0.3"
     }
-  }
-  
+}
