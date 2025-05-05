@@ -1,4 +1,4 @@
- 
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -9,6 +9,11 @@ const cors = require('cors');
 const morgan = require('morgan');
 const errorHandler = require('./middlewares/errorMiddleware');
 const authRoutes = require('./routes/authRoutes');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
 
@@ -29,6 +34,14 @@ app.use(limiter);
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
+
+
+
+app.use('/api/v1/blog', blogRoutes);
+
+
+// Swagger Docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Error Middleware
 app.use(errorHandler);
