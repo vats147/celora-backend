@@ -27,11 +27,19 @@ exports.login = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-  exports.logout = async (req, res) => {
+ exports.logout = async (req, res) => {
   try {
+    
+    res.clearCookie('token', {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Strict',
+    });
+
     res.status(200).json({ message: 'Logged out successfully.' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
-}
+};
+
 };
