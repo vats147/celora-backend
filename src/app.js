@@ -35,6 +35,11 @@ app.use(limiter);
 // Routes
 app.use('/api/v1/auth', authRoutes);
 
+app.get('/api/status',(req,res)=>{
+    res.json({status: "API is up and running"})
+})
+
+app.use("/api",require('./routes/route'))
 
 
 app.use('/api/v1/blog', blogRoutes);
